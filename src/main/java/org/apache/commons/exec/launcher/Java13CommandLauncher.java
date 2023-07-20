@@ -18,6 +18,7 @@
 
 package org.apache.commons.exec.launcher;
 
+import io.github.pixee.security.SystemCommand;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
@@ -57,7 +58,6 @@ public class Java13CommandLauncher extends CommandLauncherImpl {
 
         final String[] envVars = EnvironmentUtils.toStrings(env);
 
-        return Runtime.getRuntime().exec(cmd.toStrings(),
-                envVars, workingDir);
+        return SystemCommand.runCommand(Runtime.getRuntime(), cmd.toStrings(), envVars, workingDir);
     }
 }
