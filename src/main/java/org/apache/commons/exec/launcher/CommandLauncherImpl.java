@@ -18,6 +18,7 @@
 
 package org.apache.commons.exec.launcher;
 
+import io.github.pixee.security.SystemCommand;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
@@ -37,7 +38,7 @@ public abstract class CommandLauncherImpl implements CommandLauncher {
     public Process exec(final CommandLine cmd, final Map<String, String> env)
             throws IOException {
         final String[] envVar = EnvironmentUtils.toStrings(env);
-        return Runtime.getRuntime().exec(cmd.toStrings(), envVar);
+        return SystemCommand.runCommand(Runtime.getRuntime(), cmd.toStrings(), envVar);
     }
 
     @Override
